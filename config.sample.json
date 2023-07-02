@@ -1,0 +1,16 @@
+{
+  "fpt_server": "...",
+  "fpt_username": "...",
+  "fpt_password": "...",
+  "filemaker_path": "C:\\Program Files\\FileMaker\\FileMaker Server\\Data\\Backups",
+  "backups_path": "C:\\Users\\admin\\Backups",
+  "branch": "palladium",
+  "backup_types": [
+    "daily",
+    "hourly"
+  ],
+  "upload_backup_types": [
+    "daily"
+  ],
+  "keep_not_uploaded_items": 2
+}

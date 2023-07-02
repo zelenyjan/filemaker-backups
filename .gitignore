@@ -1,0 +1,5 @@
+.python-version
+backups.log
+config.json
+.idea
+.vscode
