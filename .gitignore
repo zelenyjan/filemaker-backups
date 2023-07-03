@@ -1,5 +1,6 @@
 .python-version
 backups.log
 config.json
+config_globus.json
 .idea
 .vscode

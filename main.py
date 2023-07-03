@@ -35,17 +35,17 @@ class Storage:
         self.sftp = FTP_TLS(server, username, password)
 
     def upload_file(self, file_to_upload: Path, upload_dir: str) -> None:
-        root_dir = Path("/")
-        branch_dir = Path("/", self.branch)
-        full_upload_path = Path("/", self.branch, upload_dir)
+        root_dir = "/"
+        branch_dir = f"{root_dir}{self.branch}"
+        full_upload_path = f"{branch_dir}/{upload_dir}"
 
         # test if branch dir exists
-        items = [x[0] for x in self.sftp.mlsd(str(root_dir))]
+        items = [x[0] for x in self.sftp.mlsd(root_dir)]
         if self.branch not in items:
-            self.sftp.mkd(str(branch_dir))
+            self.sftp.mkd(branch_dir)
 
-        if upload_dir not in [x[0] for x in self.sftp.mlsd(str(branch_dir))]:
-            self.sftp.mkd(str(full_upload_path))
+        if upload_dir not in [x[0] for x in self.sftp.mlsd(branch_dir)]:
+            self.sftp.mkd(full_upload_path)
 
         with open(file_to_upload, "rb") as f:
             self.sftp.storbinary(f"STOR {full_upload_path}/{file_to_upload.name}", f)
@@ -157,7 +157,10 @@ def main() -> None:
         logger.exception("Invalid config file!")
         return
 
-    BackupTask(config).run()
+    try:
+        BackupTask(config).run()
+    except Exception:
+        logger.exception("Error")
 
 
 if __name__ == "__main__":
