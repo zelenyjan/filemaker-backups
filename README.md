@@ -1,6 +1,6 @@
 # Filemaker Backups
 
-Simple script to backups Filemaker Server backups to DigitalOcean Spaces(S3).
+Simple script to backups Filemaker Server backups to Storage(SFTP).
 
 Backup flow:
 1. copy backups(folders) from Filemaker Server backups folder to folder on local drive
@@ -25,9 +25,9 @@ Backup flow:
 
  - `backup_types` - types of backups(folders) under `filemaker_path`
 
- - `upload_backup_types` - list of `backup_types` uploaded to S3
+ - `upload_backup_types` - list of `backup_types` uploaded to Storage
 
- - `keep_not_uploaded_items` - if `backup_types` not uploaded to S3 keep `keep_not_uploaded_items` items in `backups_path`
+ - `keep_not_uploaded_items` - if `backup_types` not uploaded to Storage keep `keep_not_uploaded_items` items in `backups_path`
 
 
 Sample config file `config.json`
